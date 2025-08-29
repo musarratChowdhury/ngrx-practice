@@ -7,20 +7,20 @@ import { BookListComponent } from './book-list/book-list.component';
 import { StoreModule } from '@ngrx/store';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { EffectsModule } from '@ngrx/effects';
+import { HttpClientModule } from '@angular/common/http';
+import { booksReducer } from './state/books.reducer';
+import { collectionReducer } from './state/collection.reducer';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    BookCollectionComponent,
-    BookListComponent
-  ],
+  declarations: [AppComponent, BookCollectionComponent, BookListComponent],
   imports: [
     BrowserModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({ books: booksReducer, collection: collectionReducer }),
     StoreRouterConnectingModule.forRoot(),
-    EffectsModule.forRoot([])
+    HttpClientModule,
+    EffectsModule.forRoot([]),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
